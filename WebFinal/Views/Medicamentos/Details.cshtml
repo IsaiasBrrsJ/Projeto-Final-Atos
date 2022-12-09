@@ -1,0 +1,48 @@
+﻿@model APiProjetoFinal.Models.Medicamento
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<p style="background-color:dimgrey; border-radius:10px; text-align:center; color:white">Detalhes</p>
+<hr />
+<div>
+    <h4>Medicamento</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TipoMedicamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TipoMedicamento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataDeValidade)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataDeValidade)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Estoque)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Estoque)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id"><button type="button" class="btn btn-dark">Editar</button></a> |
+    <a asp-action="Index"><button type="button" class="btn btn-dark">Voltar</button></a>
+</div>

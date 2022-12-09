@@ -1,0 +1,56 @@
+﻿@model IEnumerable<APiProjetoFinal.Models.Medicamento>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h3>Medicamentos Cadastrados</h3>
+<table class=" table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                <label>Tipo de medicamento</label>
+            </th>
+            <th>
+                <label>Data de validade</label>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estoque)
+            </th>
+            <th>
+                <label>Descrição</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoMedicamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDeValidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estoque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descricao)
+            </td>
+            <td>
+               <a asp-action="Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Editar</button></a> |
+               <a asp-action="Details" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Detalhes</button></a> |
+               <a asp-action="Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Deletar</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<a asp-action="Create"><button type="button" class="btn btn-dark">Cadastrar Medicamento</button></a>

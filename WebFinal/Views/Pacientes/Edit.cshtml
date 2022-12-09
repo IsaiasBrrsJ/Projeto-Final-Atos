@@ -1,0 +1,52 @@
+﻿@model APiProjetoFinal.Models.Paciente
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<div class ="row">
+
+    <p style="text-align:center; padding-top:10px; text-decoration:underline; color:black;">Editar Paciente</p>
+    <hr />
+    <div class="col-md-4" style="margin:auto">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" placeholder="Nome"/>
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idade" class="control-label"></label>
+                <input asp-for="Idade" class="form-control" placeholder="Idade" />
+                <span asp-validation-for="Idade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CPF" class="control-label"></label>
+                <input asp-for="CPF" class="form-control" placeholder="CPF" />
+                <span asp-validation-for="CPF" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Endereco" class="control-label"></label>
+                <input asp-for="Endereco" class="form-control" placeholder="Endereco" />
+                <span asp-validation-for="Endereco" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group" >
+                <input type="submit" value="Salvar" class="btn btn-dark" style="width:26vw;"/>
+                <br />
+                <br />
+                <a asp-action="Index"><button style="width: 26vw;" type="button" class="btn btn-dark">voltar</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

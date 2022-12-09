@@ -1,0 +1,47 @@
+﻿@using APiProjetoFinal.Models;
+@model IEnumerable<APiProjetoFinal.Models.Medicamento>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h3>Medicamentos Cadastrados</h3>
+<table  class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+             <label>Medicamento</label>
+            </th>
+            <th>
+                <label>Quantidade Usado</label>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Medicamento item in ViewBag.listaII)
+        {
+            int qtdMedicamento = 0;
+            @foreach (PacienteMedicamento pac in ViewBag.lista)
+            {
+                if (pac.MedicamentoId == item.Id)
+                {
+                    qtdMedicamento += Convert.ToInt32((pac.Id.ToString().Count()));
+                }
+            }
+
+         <tr>
+             <td>
+                <label>@item.Nome</label>
+            </td>
+            
+              <td>
+               <label>
+                 @qtdMedicamento 
+               </label>  
+             </td>
+
+          </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create"><button type="button" class="btn btn-dark">Cadastrar Medicamento</button></a>

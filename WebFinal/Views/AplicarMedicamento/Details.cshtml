@@ -1,0 +1,40 @@
+﻿@model APiProjetoFinal.Models.PacienteMedicamento
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<p style="background-color:dimgrey; border-radius:10px; text-align:center; color:white">Detalhes</p>
+<hr />
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Medicamento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Medicamento.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Paciente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Paciente.Nome)
+        </dd>
+        <dt class="col-sm-2">
+           <label>CPF</label>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Paciente.CPF)
+        </dd>
+        <dt class = "col-sm-2">
+            <label>Data/Hora Aplicada</label>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HoraAplicacaoMedicamento)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id"><button type="button" class="btn btn-dark">Editar</button></a> |
+    <a asp-action="Index"><button type="button" class="btn btn-dark">Voltar</button></a>
+</div>
