@@ -28,6 +28,7 @@
                 <label asp-for="CPF" class="control-label"></label>
                 <input asp-for="CPF" class="form-control" placeholder="CPF" />
                 <span asp-validation-for="CPF" class="text-danger"></span>
+                <p style="color:red;">@ViewBag.CPFcadastrado</p>
             </div>
             <div class="form-group">
                 <label asp-for="Endereco" class="control-label"></label>

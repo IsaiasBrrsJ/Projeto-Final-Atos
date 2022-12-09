@@ -1,6 +1,5 @@
-﻿using Microsoft.Build.Framework;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace APiProjetoFinal.Models
 {
@@ -9,17 +8,17 @@ namespace APiProjetoFinal.Models
         public int Id { get; set; }
 
     
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage ="Preencha o campo")]
+        [Required(ErrorMessage ="Preencha o campo")]
         public string Nome { get; set; }
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Preencha o campo")]
+        [Required(ErrorMessage = "Preencha o campo")]
         
         public int Idade { get; set; }
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Preencha o campo")]
-        [MaxLength(11)]
+        [Required(ErrorMessage = "Preencha o campo")]
+        [MaxLength(11, ErrorMessage = "CPF Incorreto")]
+        [MinLength(11, ErrorMessage = "CPF Incorreto")]  
         public string CPF { get; set; }
         
-        [System.ComponentModel.DataAnnotations.Required(ErrorMessage = "Preencha o campo")]
-        
+        [Required(ErrorMessage = "Preencha o campo")]
         public string Endereco { get; set; }
 
         public ICollection<PacienteMedicamento> Medicamentos { get; set; }

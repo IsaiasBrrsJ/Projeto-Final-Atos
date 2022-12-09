@@ -14,18 +14,18 @@ namespace WebFinal.Controllers
     {
         private readonly DataContext _context;
 
-        public PacientesController(DataContext context)
+        public PacientesController([FromServices] DataContext context)
         {
             _context = context;
         }
 
-        // GET: Pacientes
+ 
         public async Task<IActionResult> Index()
         {
               return View(await _context.Pacientes.ToListAsync());
         }
 
-        // GET: Pacientes/Details/5
+       
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Pacientes == null)
@@ -43,7 +43,7 @@ namespace WebFinal.Controllers
             return View(paciente);
         }
 
-        // GET: Pacientes/Create
+       
         public IActionResult Create()
         {
             return View();
@@ -54,17 +54,25 @@ namespace WebFinal.Controllers
         public async Task<IActionResult> Create([Bind("Id,Nome,Idade,CPF,Endereco")] Paciente paciente)
         {
 
-            if (int.TryParse(paciente.CPF, out int valor) == true)
+            var cpfCadastrado = await _context.Pacientes.FirstOrDefaultAsync(p => p.CPF == paciente.CPF);
+
+            if (long.TryParse(paciente.CPF, out long valor) == true && cpfCadastrado == null)
             {
                 await _context.Pacientes.AddAsync(paciente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+               
             }
-
-            return View(paciente);
+            else
+             ViewBag.CPFcadastrado = "CPF já cadastrado";
+            
+            
+            
+            return View();
+         
         }
 
-        // GET: Pacientes/Edit/5
+ 
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Pacientes == null)
@@ -80,41 +88,41 @@ namespace WebFinal.Controllers
             return View(paciente);
         }
 
-        // POST: Pacientes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Idade,CPF,Endereco")] Paciente paciente)
         {
-            if (id != paciente.Id)
-            {
-                return NotFound();
-            }
-
+           
             try
             {
-                _context.Pacientes.Update(paciente);
-                await _context.SaveChangesAsync();
+                var pacient = await _context.Pacientes.FirstOrDefaultAsync(p => p.CPF == paciente.CPF);
+
+                if (long.TryParse(paciente.CPF, out long valor) == true && pacient == null)
+                {
+
+                    _context.Pacientes.Update(paciente);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                    ViewBag.CPFcadastrado = "CPF já Cadastrado";
+
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PacienteExists(paciente.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+
+              throw;
+                
            }
 
-            return RedirectToAction(nameof(Index));
+            return View();
+         
         }
           
         
 
-        // GET: Pacientes/Delete/5
+
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Pacientes == null)
@@ -132,7 +140,7 @@ namespace WebFinal.Controllers
             return View(paciente);
         }
 
-        // POST: Pacientes/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -4,8 +4,9 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h3>Medicamentos Cadastrados</h3>
-<table  class="table table-bordered">
+<br />
+<br />
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -17,20 +18,19 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Medicamento item in ViewBag.listaII)
+        @foreach (Medicamento item in ViewBag.Medicamento)
         {
             int qtdMedicamento = 0;
-            @foreach (PacienteMedicamento pac in ViewBag.lista)
+            @foreach (PacienteMedicamento pac in ViewBag.PacienteMedicamento)
             {
                 if (pac.MedicamentoId == item.Id)
                 {
                     qtdMedicamento += Convert.ToInt32((pac.Id.ToString().Count()));
                 }
             }
-
          <tr>
              <td>
-                <label>@item.Nome</label>
+                <label><strong>@item.Nome</strong></label>
             </td>
             
               <td>
@@ -43,5 +43,21 @@
         }
     </tbody>
 </table>
+<br />
+<br />
 
-<a asp-action="Create"><button type="button" class="btn btn-dark">Cadastrar Medicamento</button></a>
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Cras justo odio
+        <span class="badge badge-primary badge-pill" style="color:red">14</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Dapibus ac facilisis in
+            <span class="badge badge-primary badge-pill" style="color:red">2</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Morbi leo risus
+        <span class="badge badge-primary badge-pill" style="color:red">1</span>
+        </li>
+    </ul>
+

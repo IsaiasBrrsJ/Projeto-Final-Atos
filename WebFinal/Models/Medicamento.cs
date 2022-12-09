@@ -1,22 +1,23 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace APiProjetoFinal.Models
 {
     public class Medicamento
     {
-        public int Id { get; set; } 
-
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Preencha o campo")]
         public string Nome { get; set; }
-
-        public string TipoMedicamento { get; set; } 
-
+        [Required(ErrorMessage = "Preencha o campo")]
+        public string TipoMedicamento { get; set; }
+        [Required(ErrorMessage = "Preencha o campo")]
         public DateTime DataDeValidade { get; set; }
-
+        [Required(ErrorMessage = "Preencha o campo")]
         public int Estoque { get; set; }
-
+        [Required(ErrorMessage = "Preencha o campo")]
         public string descricao { get; set; }
 
-        [JsonIgnore]
+       
         public ICollection<PacienteMedicamento> Pacientes { get; set; } 
     }
 }

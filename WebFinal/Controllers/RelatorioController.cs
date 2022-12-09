@@ -22,8 +22,8 @@ namespace WebFinal.Controllers
 
             var medicamento = await _context.Medicamentos.AsNoTracking().ToListAsync<Medicamento>();
 
-            ViewBag.lista = medicamentoPaciente;
-            ViewBag.listaII = medicamento;
+            ViewBag.PacienteMedicamento = medicamentoPaciente;
+            ViewBag.Medicamento = medicamento;
 
 
             return View();

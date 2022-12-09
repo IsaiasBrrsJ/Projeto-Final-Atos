@@ -14,7 +14,7 @@ namespace WebFinal.Controllers
     {
         private readonly DataContext _context;
 
-        public MedicamentosController(DataContext context)
+        public MedicamentosController([FromServices] DataContext context)
         {
             _context = context;
         }
