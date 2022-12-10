@@ -14,8 +14,7 @@ namespace APiProjetoFinal.Models
         
         public int Idade { get; set; }
         [Required(ErrorMessage = "Preencha o campo")]
-        [MaxLength(11, ErrorMessage = "CPF Incorreto")]
-        [MinLength(11, ErrorMessage = "CPF Incorreto")]  
+   
         public string CPF { get; set; }
         
         [Required(ErrorMessage = "Preencha o campo")]

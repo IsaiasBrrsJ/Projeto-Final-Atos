@@ -4,9 +4,8 @@
     ViewData["Title"] = "Paciente";
 }
 
-<h3>Pacientes Cadastrados</h3>
-<hr />
 
+<h5> Pacientes Cadastrados<h6>
 <table class=" table table-hover">
     <thead>
         <tr>
@@ -20,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.CPF)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Endereco)
+                        <label>Endereço</label>
             </th>
             <th></th>
         </tr>
@@ -42,9 +41,9 @@
             </td>
             <td>
 
-                    <a asp-action="Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Editar</button></a> |
-                    <a asp-action="Details" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Detalhes</button></a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Deletar</button></a>
+               <a asp-action="Edit" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Editar</button></a> |
+               <a asp-action="Details" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Detalhes</button></a> |
+               <a asp-action="Delete" asp-route-id="@item.Id"><button type="button" class="btn btn-dark">Deletar</button></a>
             </td>
         </tr>
 }

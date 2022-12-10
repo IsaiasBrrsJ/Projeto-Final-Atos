@@ -21,10 +21,11 @@ namespace WebFinal.Controllers
                 .AsNoTracking().ToListAsync<PacienteMedicamento>();
 
             var medicamento = await _context.Medicamentos.AsNoTracking().ToListAsync<Medicamento>();
+            var paciente = await _context.Pacientes.AsNoTracking().ToListAsync<Paciente>();
 
             ViewBag.PacienteMedicamento = medicamentoPaciente;
             ViewBag.Medicamento = medicamento;
-
+            ViewBag.Paciente = paciente;
 
             return View();
         }
