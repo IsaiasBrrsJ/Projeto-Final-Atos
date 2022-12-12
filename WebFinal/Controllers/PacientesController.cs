@@ -22,10 +22,8 @@ namespace WebFinal.Controllers
  
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Pacientes.ToListAsync());
+            return View(await _context.Pacientes.ToListAsync());
         }
-
-       
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Pacientes == null)

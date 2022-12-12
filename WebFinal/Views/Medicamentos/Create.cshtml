@@ -1,7 +1,7 @@
 ﻿@model APiProjetoFinal.Models.Medicamento
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Adcionar medicamento";
 }
 
 
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Estoque" class="control-label"></label>
-                <input asp-for="Estoque" class="form-control" />
+                <input type="number" min="1" asp-for="Estoque" class="form-control" />
                 <span asp-validation-for="Estoque" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -2,13 +2,10 @@
 @model IEnumerable<APiProjetoFinal.Models.Medicamento>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Relatório";
     
 }
-<br />
-<br />
-
-<table class="table table-hover">
+<table id="example" class="table table-striped table-hover table-sm" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -43,10 +40,57 @@
         }
     </tbody>
 </table>
+<hr />
 <br />
 <br />
 
-    <ul class="list-group">
+<table id="relatorio" class="table table-striped table-hover table-sm" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                <label>Paciente</label>
+            </th>
+            <th>
+                <span style="margin-right: 70px;"><label>CPF</label></span>
+            </th>
+            <th>
+                <span style="margin-right: 70px;"><label>Medicação consumida</label></span>
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        
+         @foreach (Paciente paciente in ViewBag.Paciente)
+         {
+            int medicamentoConsumidos = 0;
+             string medicamento = "";
+            @foreach (PacienteMedicamento pacienteMedicamento in ViewBag.PacienteMedicamento)
+            {
+                @if(paciente.Id == pacienteMedicamento.PacienteId)
+                {
+                     medicamentoConsumidos++;
+                      medicamento = pacienteMedicamento.Medicamento.Nome;
+                 }
+            }
+
+            <tr>
+             <td>
+                <label><strong>@paciente.Nome</strong></label>
+            </td>
+            <td>
+                    <label><strong>@paciente.CPF</strong></label>
+            </td>
+            <td>
+              <label style="padding-left: 2vw;">@medicamentoConsumidos </label>
+            </td>
+          </tr>
+
+
+         }
+    </tbody>
+  </table>
+@*    <ul class="list-group">
     
         @foreach (Paciente paciente in ViewBag.Paciente)
         {
@@ -70,5 +114,14 @@
              <span class="badge badge-primary badge-pill" style="color:red">@medicamentoConsumidos</span>
            </li>
         }
-    </ul>
+    </ul>*@
 
+<style>
+    .page-item.active .page-link {
+        z-index: 1;
+        color: #fff;
+        background-color: black;
+        border-color: black;
+        border-radius: 3px;
+    }
+</style>

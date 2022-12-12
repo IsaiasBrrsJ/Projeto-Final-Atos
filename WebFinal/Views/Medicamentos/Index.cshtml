@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<APiProjetoFinal.Models.Medicamento>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Medicamento";
 }
-<h5>Medicamentos Cadastrados</h5>
-<table class=" table table-hover">
+<p></p>
+<h5 style="text-align:center; padding-right: 40px;">Medicamentos Cadastrados</h5>
+<table id="example" class="table table-striped table-hover table-sm" style="width:100%">
     <thead>
         <tr>
             <th>
@@ -54,3 +55,12 @@
 </table>
 
 <a asp-action="Create"><button type="button" class="btn btn-dark">Cadastrar Medicamento</button></a>
+<style>
+    .page-item.active .page-link {
+        z-index: 1;
+        color: #fff;
+        background-color: black;
+        border-color: black;
+        border-radius: 3px;
+    }
+</style>

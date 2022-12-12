@@ -1,13 +1,13 @@
 ﻿@model APiProjetoFinal.Models.PacienteMedicamento
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Fornecer medicamento";
 }
 
-<p style="background-color:dimgrey; border-radius:10px; text-align:center; color:white">Aplicar Medicamento</p>
-<hr />
 
 <div class="row">
+    <p style="text-align:center; padding-top:10px; text-decoration:underline; color:black;">Medicamento</p>
+    <hr />
     <div class="col-md-4" style="margin:auto">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>

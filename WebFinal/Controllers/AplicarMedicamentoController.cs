@@ -22,7 +22,10 @@ namespace WebFinal.Controllers
     
         public async Task<IActionResult> Index()
         {
-            var dataContext = _context.PacienteMedicamentos.Include(p => p.Medicamento).Include(p => p.Paciente);
+            var dataContext = _context.PacienteMedicamentos
+                .Include(p => p.Medicamento)
+                .Include(p => p.Paciente);
+
             return View(await dataContext.ToListAsync());
         }
 
@@ -49,7 +52,7 @@ namespace WebFinal.Controllers
 
         public IActionResult Create()
         {
-            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "Id", "Nome");
+            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos.Where(p => p.Estoque > 0), "Id", "Nome");
             ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Nome");
             ViewData["CPF"] = new SelectList(_context.Pacientes, "Id", "CPF");
             return View();
@@ -65,6 +68,8 @@ namespace WebFinal.Controllers
                 {
 
                      var medicamentoEstoque = await _context.Medicamentos.FirstOrDefaultAsync(m => m.Id == pacienteMedicamento.MedicamentoId);
+                     
+                
                      medicamentoEstoque.Estoque--;
                      _context.PacienteMedicamentos.Add(pacienteMedicamento);
                      _context.Medicamentos.Update(medicamentoEstoque);    
@@ -139,46 +144,6 @@ namespace WebFinal.Controllers
             ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "CPF", pacienteMedicamento.PacienteId);
             return View(pacienteMedicamento);
         }
-
-      
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.PacienteMedicamentos == null)
-            {
-                return NotFound();
-            }
-
-            var pacienteMedicamento = await _context.PacienteMedicamentos
-                .Include(p => p.Medicamento)
-                .Include(p => p.Paciente)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (pacienteMedicamento == null)
-            {
-                return NotFound();
-            }
-
-            return View(pacienteMedicamento);
-        }
-
-     
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.PacienteMedicamentos == null)
-            {
-                return Problem("Entity set 'DataContext.PacienteMedicamentos'  is null.");
-            }
-            var pacienteMedicamento = await _context.PacienteMedicamentos.FindAsync(id);
-            if (pacienteMedicamento != null)
-            {
-                _context.PacienteMedicamentos.Remove(pacienteMedicamento);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool PacienteMedicamentoExists(int id)
         {
           return _context.PacienteMedicamentos.Any(e => e.Id == id);
