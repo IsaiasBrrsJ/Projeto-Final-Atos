@@ -51,7 +51,7 @@
                 <label>Paciente</label>
             </th>
             <th>
-                <span style="margin-right: 70px;"><label>CPF</label></span>
+                <span style="margin-right: 70px;  padding-left: 7vw;""><label>CPF</label></span>
             </th>
             <th>
                 <span style="margin-right: 70px;"><label>Medicação consumida</label></span>
@@ -63,7 +63,7 @@
         
          @foreach (Paciente paciente in ViewBag.Paciente)
          {
-            int medicamentoConsumidos = 0;
+             int medicamentoConsumidos = 0;
              string medicamento = "";
             @foreach (PacienteMedicamento pacienteMedicamento in ViewBag.PacienteMedicamento)
             {
@@ -71,7 +71,7 @@
                 {
                      medicamentoConsumidos++;
                       medicamento = pacienteMedicamento.Medicamento.Nome;
-                 }
+                }
             }
 
             <tr>
@@ -79,10 +79,10 @@
                 <label><strong>@paciente.Nome</strong></label>
             </td>
             <td>
-                    <label><strong>@paciente.CPF</strong></label>
+                    <label style="padding-left: 5vw;"><strong>@paciente.CPF</strong></label>
             </td>
             <td>
-              <label style="padding-left: 2vw;">@medicamentoConsumidos </label>
+               <label style="padding-left: 5vw;">@medicamentoConsumidos </label>
             </td>
           </tr>
 
@@ -90,32 +90,6 @@
          }
     </tbody>
   </table>
-@*    <ul class="list-group">
-    
-        @foreach (Paciente paciente in ViewBag.Paciente)
-        {
-             int medicamentoConsumidos = 0;
-             string medicamento = "";
-          @foreach (PacienteMedicamento pacienteMedicamento in ViewBag.PacienteMedicamento)
-            {
-                @if(paciente.Id == pacienteMedicamento.PacienteId)
-                {
-                     medicamentoConsumidos++;
-                      medicamento = pacienteMedicamento.Medicamento.Nome;
-                 }
-            }
-
-           <li class="list-group-item d-flex justify-content-between align-items-center">
-             @paciente.Nome
-           </li>
-
-           <li class="list-group-item d-flex justify-content-between align-items-center">
-            @medicamento
-             <span class="badge badge-primary badge-pill" style="color:red">@medicamentoConsumidos</span>
-           </li>
-        }
-    </ul>*@
-
 <style>
     .page-item.active .page-link {
         z-index: 1;
