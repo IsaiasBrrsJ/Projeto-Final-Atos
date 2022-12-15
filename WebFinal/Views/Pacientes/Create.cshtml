@@ -1,11 +1,9 @@
-﻿@using APiProjetoFinal.Models;
-@model APiProjetoFinal.Models.Paciente
+﻿@model  APiProjetoFinal.Models.Paciente;
+@using WebFinal.Models;
 
 @{
     ViewData["Title"] = "Adcionar Paciente";
-   
 }
-
 
 <div class="row" >
     <p style="text-align:center; padding-top:10px; text-decoration:underline; color:black;">Cadastrar Paciente</p>
@@ -25,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CPF" class="control-label"></label>
-                <input asp-for="CPF" class="form-control" placeholder="CPF, Apenas Números" onclick="limparViewBagCPF()" />
+                <input  maxlength="11" asp-for="CPF" class="form-control" placeholder="CPF, Apenas Números" onclick="limparViewBagCPF()" />
                 <span asp-validation-for="CPF" class="text-danger"></span>
                 <p id="CPFCADASTRADO" style="color:red;">@ViewBag.CPFcadastrado</p>
     

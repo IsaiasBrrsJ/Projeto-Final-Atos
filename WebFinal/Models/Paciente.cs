@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using WebFinal.Models;
 
 namespace APiProjetoFinal.Models
 {
     public class Paciente
     {
         public int Id { get; set; }
-
     
         [Required(ErrorMessage ="Preencha o campo")]
         public string Nome { get; set; }
@@ -14,7 +14,7 @@ namespace APiProjetoFinal.Models
         
         public int Idade { get; set; }
         [Required(ErrorMessage = "Preencha o campo")]
-   
+
         public string CPF { get; set; }
         
         [Required(ErrorMessage = "Preencha o campo")]

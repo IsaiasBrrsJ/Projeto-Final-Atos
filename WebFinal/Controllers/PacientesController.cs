@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APiProjetoFinal.Data;
 using APiProjetoFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebFinal.Controllers
 {
@@ -19,11 +20,12 @@ namespace WebFinal.Controllers
             _context = context;
         }
 
- 
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Pacientes.ToListAsync());
         }
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Pacientes == null)
@@ -33,6 +35,7 @@ namespace WebFinal.Controllers
 
             var paciente = await _context.Pacientes
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (paciente == null)
             {
                 return NotFound();
@@ -41,36 +44,39 @@ namespace WebFinal.Controllers
             return View(paciente);
         }
 
-       
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Idade,CPF,Endereco")] Paciente paciente)
         {
 
             var cpfCadastrado = await _context.Pacientes.FirstOrDefaultAsync(p => p.CPF == paciente.CPF);
-
-            if (long.TryParse(paciente.CPF, out long valor) == true && cpfCadastrado == null)
+            bool convertetCPF = long.TryParse(paciente.CPF, out long valor);
+            if (!convertetCPF)
+            {
+                ViewBag.CPFcadastrado = "CPF Incorreto";
+            
+            }
+            else if (cpfCadastrado != null && cpfCadastrado.CPF.ToString() == paciente.CPF)
+            {
+                ViewBag.CPFcadastrado = "CPF já cadastrado";
+            }
+            else
             {
                 await _context.Pacientes.AddAsync(paciente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-               
             }
-            else
-             ViewBag.CPFcadastrado = "CPF já cadastrado";
-            
-            
             
             return View();
          
         }
-
- 
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Pacientes == null)
@@ -86,7 +92,7 @@ namespace WebFinal.Controllers
             return View(paciente);
         }
 
-       
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Idade,CPF,Endereco")] Paciente paciente)
@@ -94,6 +100,7 @@ namespace WebFinal.Controllers
            
             try
             {
+                var cpf = paciente.CPF;
                 var pacient = await _context.Pacientes.FirstOrDefaultAsync(p => p.CPF == paciente.CPF);
 
                 if (long.TryParse(paciente.CPF, out long valor) == true && pacient == null)
@@ -103,24 +110,19 @@ namespace WebFinal.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-                else
-                    ViewBag.CPFcadastrado = "CPF já Cadastrado";
-
             }
             catch (DbUpdateConcurrencyException)
             {
-
               throw;
-                
-           }
+            }
 
             return View();
          
         }
-          
-        
 
 
+
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Pacientes == null)
@@ -138,7 +140,7 @@ namespace WebFinal.Controllers
             return View(paciente);
         }
 
-        
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

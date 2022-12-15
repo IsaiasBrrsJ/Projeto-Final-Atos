@@ -27,18 +27,30 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1" >
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Medicamentos" asp-action="Index">Medicamentos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="AplicarMedicamento" asp-action="Index">Paciente/Medicamento</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Relatorio" asp-action="Index">Informações</a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Medicamentos" asp-action="Index">Medicamentos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="AplicarMedicamento" asp-action="Index">Paciente/Medicamento</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Relatorio" asp-action="Index">Informações</a>
+                            </li>
+                            <ul class="navbar-nav flex-grow-1">
+                                <li class="nav-item">
+ 
+                                    <span style="margin-left: 45vw;" class="nav-link text-white">@User.Identity.Name</span>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-secondary small" asp-controller="Login" asp-action="Logout">Sair</a>
+                                </li>
+                            </ul>
+                        }
                     </ul>
                 </div>
             </div>

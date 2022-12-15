@@ -1,4 +1,6 @@
-﻿namespace APiProjetoFinal.Models
+﻿using APiProjetoFinal.Models;
+
+namespace APiProjetoFinal.Models
 {
     public class PacienteMedicamento
     {

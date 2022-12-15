@@ -1,0 +1,44 @@
+﻿@model WebFinal.Models.Usuario
+
+@{
+    ViewData["Title"] = "Cadastre-se";
+}
+
+
+<div>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-4" style="margin-top: 10px; ">
+                <div class="card bg-gradient" style="border-radius: 8%;">
+                    <div class="card-body px-lg-5 py-lg-4">
+                        <div class="text-center text-muted mb-5">
+                            <h2 style="text-decoration:underline; text-decoration-color:black;">Cadastro</h2>
+                        </div>
+                        <form asp-action="NovoUsuario" method="post">
+                            <div class="form-group">
+                                <input asp-for="User" class="form-control" onclick="LimparViewBag()" placeholder="Digite aqui seu usuário"/>
+                                <label id="InputEmBranc" style="color:red;">@ViewBag.ErroUsuario</label>
+                            </div>
+                            <div class="form-group">
+                     
+                                <input type="password" asp-for="Password" class="form-control" onclick="LimparViewBag()" placeholder="Digite aqui sua senha"/>
+                                <label id="InputEmBranco" style="color :red;">@ViewBag.ErroSenha</label>
+                             
+                            </div>
+                            <p></p>
+                            <div class="form-group">
+                                <button type="submit" value="Criar" class="btn btn-dark" style="width:26vw">Criar</button>
+                                <br />
+                                <br />
+                                <a asp-action="Index"><button type="button" class="btn btn-dark" style="width:26vw">Voltar</button></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

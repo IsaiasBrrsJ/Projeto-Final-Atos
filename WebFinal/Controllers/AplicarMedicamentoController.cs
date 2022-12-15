@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APiProjetoFinal.Data;
 using APiProjetoFinal.Models;
+using WebFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebFinal.Controllers
 {
@@ -18,8 +20,7 @@ namespace WebFinal.Controllers
         {
             _context = context;
         }
-
-    
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var dataContext = _context.PacienteMedicamentos
@@ -29,7 +30,7 @@ namespace WebFinal.Controllers
             return View(await dataContext.ToListAsync());
         }
 
-  
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.PacienteMedicamentos == null)
@@ -50,6 +51,7 @@ namespace WebFinal.Controllers
         }
 
 
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos.Where(p => p.Estoque > 0), "Id", "Nome");
@@ -59,6 +61,7 @@ namespace WebFinal.Controllers
         }
 
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id, MedicamentoId,PacienteId,HoraAplicacaoMedicamento")] PacienteMedicamento pacienteMedicamento)
@@ -69,7 +72,6 @@ namespace WebFinal.Controllers
 
                      var medicamentoEstoque = await _context.Medicamentos.FirstOrDefaultAsync(m => m.Id == pacienteMedicamento.MedicamentoId);
                      
-                
                      medicamentoEstoque.Estoque--;
                      _context.PacienteMedicamentos.Add(pacienteMedicamento);
                      _context.Medicamentos.Update(medicamentoEstoque);    
@@ -93,6 +95,7 @@ namespace WebFinal.Controllers
 
         }
 
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.PacienteMedicamentos == null)
@@ -111,7 +114,7 @@ namespace WebFinal.Controllers
             return View(pacienteMedicamento);
         }
 
-
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,MedicamentoId,PacienteId,HoraAplicacaoMedicamento")] PacienteMedicamento pacienteMedicamento)
@@ -140,10 +143,9 @@ namespace WebFinal.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             
-            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "Id", "Id", pacienteMedicamento.MedicamentoId);
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "CPF", pacienteMedicamento.PacienteId);
-            return View(pacienteMedicamento);
+
         }
+      
         private bool PacienteMedicamentoExists(int id)
         {
           return _context.PacienteMedicamentos.Any(e => e.Id == id);

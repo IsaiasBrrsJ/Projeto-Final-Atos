@@ -1,5 +1,6 @@
 ﻿using APiProjetoFinal.Models;
 using Microsoft.EntityFrameworkCore;
+using WebFinal.Models;
 
 namespace APiProjetoFinal.Data
 {
@@ -14,6 +15,7 @@ namespace APiProjetoFinal.Data
 
         public DbSet<PacienteMedicamento> PacienteMedicamentos { get; set; }
 
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

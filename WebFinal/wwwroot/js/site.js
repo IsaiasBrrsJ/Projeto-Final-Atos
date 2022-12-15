@@ -6,7 +6,6 @@
 
     $(document).ready(function () {
         $('#example').DataTable({
-
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
             }
@@ -18,7 +17,8 @@
 
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.13.1/i18n/pt-BR.json"
-            }
+            },
+           
         });
 
     });
@@ -27,4 +27,14 @@
 function limparViewBagCPF() {
     var cpf = document.getElementById("CPFCADASTRADO");
     cpf.innerHTML = "";
+}
+
+function LimparViewBag()
+{
+ 
+    var campo = document.getElementById("InputEmBranco")
+    var campoI = document.getElementById("InputEmBranc");
+
+    campoI.innerHTML = "";
+    campo.innerHTML =  "";
 }

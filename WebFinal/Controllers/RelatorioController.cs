@@ -1,7 +1,9 @@
 ﻿using APiProjetoFinal.Data;
 using APiProjetoFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebFinal.Models;
 
 namespace WebFinal.Controllers
 {
@@ -13,6 +15,8 @@ namespace WebFinal.Controllers
         {
             _context = context;
         }
+
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var medicamentoPaciente = await _context.PacienteMedicamentos

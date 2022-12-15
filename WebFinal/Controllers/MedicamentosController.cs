@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APiProjetoFinal.Data;
 using APiProjetoFinal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebFinal.Controllers
 {
@@ -19,13 +20,13 @@ namespace WebFinal.Controllers
             _context = context;
         }
 
-        // GET: Medicamentos
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return View(await _context.Medicamentos.ToListAsync());
         }
 
-        // GET: Medicamentos/Details/5
+       
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Medicamentos == null)
@@ -43,52 +44,62 @@ namespace WebFinal.Controllers
             return View(medicamento);
         }
 
-        // GET: Medicamentos/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Medicamentos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,TipoMedicamento,DataDeValidade,Estoque,descricao")] Medicamento medicamento)
         {
-           
+            try
+            {
                 _context.Medicamentos.Add(medicamento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            
-            return View(medicamento);
+
+              
+            } catch (Exception ex) {
+                return View(medicamento);
+            }
         }
 
-        // GET: Medicamentos/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Medicamentos == null)
+            try
             {
-                return NotFound();
-            }
+                if (id == null || _context.Medicamentos == null)
+                {
+                    return NotFound();
+                }
 
-            var medicamento = await _context.Medicamentos.FindAsync(id);
-            if (medicamento == null)
-            {
-                return NotFound();
+                var medicamento = await _context.Medicamentos.FindAsync(id);
+                if (medicamento == null)
+                {
+                    return NotFound();
+                }
+                return View(medicamento);
             }
-            return View(medicamento);
+            catch(Exception ex)
+            { }
+
+            return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
+      
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,TipoMedicamento,DataDeValidade,Estoque,descricao")] Medicamento medicamento)
         {
             if (id != medicamento.Id)
             {
                 return NotFound();
             }
-
             
                 try
                 {
@@ -111,7 +122,7 @@ namespace WebFinal.Controllers
            
         }
 
-        // GET: Medicamentos/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Medicamentos == null)
@@ -129,7 +140,7 @@ namespace WebFinal.Controllers
             return View(medicamento);
         }
 
-        // POST: Medicamentos/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

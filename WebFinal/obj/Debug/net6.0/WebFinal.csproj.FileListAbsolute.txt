@@ -288,3 +288,4 @@ D:\entityuaka\WebFinal\obj\Debug\net6.0\refint\WebFinal.dll
 D:\entityuaka\WebFinal\obj\Debug\net6.0\WebFinal.pdb
 D:\entityuaka\WebFinal\obj\Debug\net6.0\WebFinal.genruntimeconfig.cache
 D:\entityuaka\WebFinal\obj\Debug\net6.0\ref\WebFinal.dll
+D:\entityuaka\WebFinal\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll
