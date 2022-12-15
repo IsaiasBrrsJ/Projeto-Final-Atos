@@ -44,7 +44,7 @@ namespace WebFinal.Controllers
             try
             {
                 
-                    if (usuario.User == user.ToLower() && usuario.Password == password.ToLower())
+                    if (usuario != null && (usuario.User == user.ToLower() && usuario.Password == password.ToLower()))
                     {
                         Login(usuario);
                         return RedirectToAction("Index", "Pacientes");
@@ -59,7 +59,8 @@ namespace WebFinal.Controllers
             {
                 ViewBag.Erro = "Ocorreu algum erro ao tentar se logar, tente novamente!";
             }
-            return View();
+
+            return RedirectToAction("Index", "Login");
         }
 
         public IActionResult NovoUsuario()
@@ -135,7 +136,7 @@ namespace WebFinal.Controllers
             var propriedadesDeAutenticacao = new AuthenticationProperties
             {
                 AllowRefresh = true,
-                ExpiresUtc = DateTime.Now.ToLocalTime().AddHours(2),
+                ExpiresUtc = DateTime.Now.ToLocalTime().AddMinutes(3),
                 IsPersistent = true
             };
 

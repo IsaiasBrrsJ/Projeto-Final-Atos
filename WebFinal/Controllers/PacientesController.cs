@@ -100,13 +100,19 @@ namespace WebFinal.Controllers
            
             try
             {
-                var cpf = paciente.CPF;
-                var pacient = await _context.Pacientes.FirstOrDefaultAsync(p => p.CPF == paciente.CPF);
+                
+                var pacient = await _context.Pacientes.FirstOrDefaultAsync(p => p.Id == paciente.Id);
 
-                if (long.TryParse(paciente.CPF, out long valor) == true && pacient == null)
+
+                if (long.TryParse(paciente.CPF, out long valor) == true && pacient != null)
                 {
+                    pacient.CPF = paciente.CPF;
+                    pacient.Nome = paciente.Nome;
+                    pacient.Idade = paciente.Idade;
+                    pacient.Endereco = paciente.Endereco;
+       
+                   _context.Pacientes.Update(pacient);
 
-                    _context.Pacientes.Update(paciente);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }

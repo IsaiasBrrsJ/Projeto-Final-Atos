@@ -27,8 +27,9 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
+    @foreach (var item in Model) {
+
+            <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
@@ -36,8 +37,15 @@
                 @Html.DisplayFor(modelItem => item.TipoMedicamento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataDeValidade)
-            </td>
+                    @if(item.DataDeValidade < DateTime.Now)
+                    {
+                        <span style="color:red;">@Html.DisplayFor(modelItem => item.DataDeValidade) </span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => item.DataDeValidade)
+                    }
+                </td>
             <td style="padding-left: 20px;">
                 @Html.DisplayFor(modelItem => item.Estoque)
             </td>

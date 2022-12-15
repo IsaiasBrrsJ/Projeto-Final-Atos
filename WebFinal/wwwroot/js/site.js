@@ -31,10 +31,11 @@ function limparViewBagCPF() {
 
 function LimparViewBag()
 {
- 
+    var limparCampoLogin = document.getElementById("erroLogin");
     var campo = document.getElementById("InputEmBranco")
     var campoI = document.getElementById("InputEmBranc");
 
     campoI.innerHTML = "";
-    campo.innerHTML =  "";
+    campo.innerHTML = "";
+    limparCampoLogin.innerHTML = "";
 }

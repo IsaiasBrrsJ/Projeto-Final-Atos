@@ -54,7 +54,7 @@ namespace WebFinal.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos.Where(p => p.Estoque > 0), "Id", "Nome");
+            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos.Where(p => p.Estoque > 0 && p.DataDeValidade > DateTime.Now), "Id", "Nome");
             ViewData["PacienteId"] = new SelectList(_context.Pacientes, "Id", "Nome");
             ViewData["CPF"] = new SelectList(_context.Pacientes, "Id", "CPF");
             return View();
