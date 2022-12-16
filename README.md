@@ -40,7 +40,8 @@
 ![image](https://user-images.githubusercontent.com/88753616/207990072-3dd53f6c-697d-4b49-ab71-e10f8954ebbd.png)
 
 ## Tela Paciente Medicamento
-![image](https://user-images.githubusercontent.com/88753616/207990109-e5dc30e1-b78d-4a35-87c4-ea9f070628db.png)
+![image](https://user-images.githubusercontent.com/88753616/208004811-76c1b45f-ba2b-4f22-9650-827fefcc80c3.png)
+
 
 ## Tela Informações 
 
