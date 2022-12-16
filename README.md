@@ -37,7 +37,8 @@
 
 ## Tela Medicamentos
 
-![image](https://user-images.githubusercontent.com/88753616/207990072-3dd53f6c-697d-4b49-ab71-e10f8954ebbd.png)
+![image](https://user-images.githubusercontent.com/88753616/208005370-37a7baf9-2607-4b24-86af-da6820c0e07f.png)
+
 
 ## Tela Paciente Medicamento
 ![image](https://user-images.githubusercontent.com/88753616/208004811-76c1b45f-ba2b-4f22-9650-827fefcc80c3.png)
