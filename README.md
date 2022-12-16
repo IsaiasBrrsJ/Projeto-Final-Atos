@@ -52,4 +52,7 @@
 ![image](https://user-images.githubusercontent.com/88753616/207990208-312b22d8-51b0-461d-8cbd-eee00215c3ce.png)
 
 
+## Diagrama do banco de dados
+
+![image](https://user-images.githubusercontent.com/88753616/208142253-dc50f495-ab35-4f5e-85cd-28da64b2bcd2.png)
 
