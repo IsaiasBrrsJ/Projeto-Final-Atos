@@ -1,0 +1,15 @@
+D:\entityuaka\GeradorDeCpf\bin\Debug\net6.0\GeradorDeCpf.exe
+D:\entityuaka\GeradorDeCpf\bin\Debug\net6.0\GeradorDeCpf.deps.json
+D:\entityuaka\GeradorDeCpf\bin\Debug\net6.0\GeradorDeCpf.runtimeconfig.json
+D:\entityuaka\GeradorDeCpf\bin\Debug\net6.0\GeradorDeCpf.dll
+D:\entityuaka\GeradorDeCpf\bin\Debug\net6.0\GeradorDeCpf.pdb
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\GeradorDeCpf.csproj.AssemblyReference.cache
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\GeradorDeCpf.GeneratedMSBuildEditorConfig.editorconfig
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\GeradorDeCpf.AssemblyInfoInputs.cache
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\GeradorDeCpf.AssemblyInfo.cs
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\GeradorDeCpf.csproj.CoreCompileInputs.cache
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\GeradorDeCpf.dll
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\refint\GeradorDeCpf.dll
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\GeradorDeCpf.pdb
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\GeradorDeCpf.genruntimeconfig.cache
+D:\entityuaka\GeradorDeCpf\obj\Debug\net6.0\ref\GeradorDeCpf.dll
